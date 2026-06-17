@@ -1,0 +1,125 @@
+############################
+# Python (général)
+############################
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+############################
+# Environnements virtuels
+############################
+venv/
+.venv/
+env/
+ENV/
+conda-env/
+.conda/
+
+############################
+# Packaging / build
+############################
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+############################
+# Jupyter / notebooks
+############################
+.ipynb_checkpoints/
+.jupyter/
+.ipython/
+
+############################
+# Logs
+############################
+*.log
+
+############################
+# Fichiers temporaires
+############################
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+############################
+# IDE / éditeurs
+############################
+.vscode/
+.idea/
+
+############################
+# OS
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Variables d'environnement
+############################
+.env
+.env.*
+*.env
+
+############################
+# DATASETS (très important en ML)
+############################
+data/raw/
+data/external/
+datasets/
+# *.csv
+# *.tsv
+# *.json
+# *.parquet
+# *.h5
+# *.hdf5
+*.pkl
+*.pickle
+*.feather
+
+############################
+# OUTPUTS / EDA / VISUALISATION
+############################
+plots/
+figures/
+outputs/
+eda_output/
+analysis_results/
+# *.png
+# *.jpg
+# *.jpeg
+# *.svg
+# *.pdf
+
+############################
+# MODÈLES ML
+############################
+models/
+*.joblib
+*.model
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.pb
+
+############################
+# CACHE / EXPERIMENTS
+############################
+.cache/
+cache/
+mlruns/
+wandb/
+lightning_logs/
+
+############################
+# SCIKIT-LEARN / PIPELINE
+############################
+grid_search_results/
+cross_val_cache/
+pipeline_cache/
+
