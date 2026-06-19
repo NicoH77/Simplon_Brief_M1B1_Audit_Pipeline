@@ -187,8 +187,76 @@ Par ailleurs, le risque peut être amplifié par la combinaison de plusieurs var
 
 ## Étape 5 : Étape 6 (Optionnelle) : Quantifier plutôt qu'affirmer
 
-Les risques résiduels sont lié aux variables contribuant directement à l’évaluation du risque de crédit. Ils doivent toutefois faire l’objet de mesures de limitation et doivent être explicitement documentés et surveillés dans le temps, notamment via des audits réguliers d’équité et de performance du modèle. Jusqu'à présent, les recommandations reponsent sur notre jugement, mais il existe des techniques pour étayer et quantifier certains niais et déséquilibres.
+Les risques résiduels sont liés aux variables contribuant directement à l’évaluation du risque de crédit. Ils doivent toutefois faire l’objet de mesures de limitation et doivent être explicitement documentés et surveillés dans le temps, notamment via des audits réguliers d’équité et de performance du modèle. Jusqu'à présent, les recommandations reponsent sur notre jugement, mais il existe des techniques pour étayer et quantifier certains biais et déséquilibres.
+
+Pour objectiver les choix et recommandations, voici une stratégie d'audit sur 4 axes :
+
+1. Audit des données
+    - Analyse descriptive :
+        * Statistiques par groupe (moyennes, écarts-types).
+        * Visualisation des distributions (histogrammes, boxplots).
+    - Détection de biais :
+        * Tests de dépendance entre variables sensibles (genre, ethnie) et la cible.
+        * Outils : Aequitas, Fairlearn, IBM AI Fairness 360.
+
+2. Audit du modèle
+    - Métriques d'équité :
+        * Équité statistique : égalité des taux de prédiction entre groupes. 
+        * Équité prédictive : égalité des métriques (précision, rappel) entre groupes.
+        * Équité de calibration : alignement des probabilités prédites avec les fréquences réelles.
+    - Outils :
+        * Fairlearn (Microsoft) : implémente des métriques comme le DI (Disparate Impact) ou le SPD (Statistical Parity Difference).
+        * Aequitas : audit des biais dans les données et les modèles.
+        * IBM AI Fairness 360 : bibliothèque complète pour détecter et mitiger les biais.
+
+3. Audit réglementaire
+    - Cadre légal :
+        * RGPD (Europe) : droit à la non-discrimination.
+        * AI Act (UE) : obligations de transparence et d'équité pour les systèmes à haut risque.
+        * Loi américaine : Algorithmic Accountability Act (proposition en discussion).
+    - Documentation :
+        * Rapports d'audit (data sheet) : transparence sur les biais détectés et les actions correctives.
 
 
 
+Le **Disparate Impact** mesure si un modèle (octroit de crédit pour notre cas) pénalise un groupe protégé (ex. : femmes, minorités ethniques) par rapport à un groupe de référence, même sans intention discriminatoire. L’objectif est de détecter si un groupe reçoit significativement moins de décisions favorables qu’un autre :
 
+   - Taux d’octroi par groupe :
+        taux_octroi_groupe = nombre de crédits accordés au groupe protégé / nombre total de demandes du groupe de référence
+   - Ecart entre 2 groupes
+        écart = taux_octroi_groupe_ref - taux_octroi_groupe_protégé
+   - DI = Ratio d’impact disparate
+        ratio_impact = taux_octroi_groupe_protégé / taux_octroi_groupe_ref
+    
+   - Seuil d’acceptabilité (selon l’EEOC et les régulateurs européens) :
+      * DI ≥ 0,8 : Le modèle est considéré comme équitable.
+      * DI < 0,8 : Risque de discrimination avéré (le modèle doit être corrigé ou abandonné).
+
+    - indicateur simple à développer en code Python, possibilité d'itération sur plusiseurs groupes et combinaisons de groupes
+       * outils : 
+          + `from fairlearn.metrics import demographic_parity_difference`
+          + `from aequitas.group import Group`
+            `from aequitas.bias import Bias`
+          + `from aif360.datasets import BinaryLabelDataset`
+            `from aif360.metrics import BinaryLabelDatasetMetric `
+
+Résumé des actions
+   - Collecter les données de décision et les groupes protégés.
+   - Calculer le DI avec Fairlearn, Aequitas ou AIF360.
+   - Interpréter : DI ≥ 0,8 → OK ; DI < 0,8 → corriger.
+   - Corriger : Rééquilibrer les données, ajuster les seuils, ou changer de modèle.
+   - Documenter : datasheet.
+
+
+---
+
+1. Équité : éviter les biais et garantir l’équité algorithmique
+    - Principe : 
+        *  Identifier les variables sensibles (ex : genre, origine ethnique, âge) et évaluer leur impact sur les résultats.
+        * Vérifier la représentativité des données (diversité des échantillons).
+    - Détection des biais :
+        * Utilisation d'outils d’analyse de biais (ex : IBM AI Fairness 360, Google What-If Tool).
+        * Métriques d’équité :
+            + Équité démographique : Parité de traitement entre groupes.
+            + Équité individuelle : Cohérence des décisions pour des individus similaires.
+            + Équité procédurale : Transparence des critères de décision.
