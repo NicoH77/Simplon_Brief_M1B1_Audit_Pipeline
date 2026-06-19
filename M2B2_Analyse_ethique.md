@@ -129,12 +129,12 @@ L'objectif de cette étape est  de passer du jeu de données techniquement netto
 
 Pour finaliser le jeu de données exploitable et éthique, on peut appliquer le principe de proportionalité : chaque variable est évaluée selon son utilité métier vs. son risque éthique.
 
-| Métier        | Ethique           | Décision              |
-| ------------- | ----------------- | --------------------- |
-| inutile       | risqué ou pas     | Suppression           |
-| utile         | faiblement risqué | Conservation          |
-| utile         | risqué            | Transformation        |
-| indispensable | -                 | Conservation encadrée |
+| Métier        | Ethique           | Décision                 |
+| ------------- | ----------------- | ------------------------ |
+| inutile       | risqué ou pas     | ❌ Suppression           |
+| utile         | faiblement risqué | ✅ Conservation          |
+| utile         | risqué            | ⚠️ Transformation        |
+| indispensable | -                 | ⚠️ Conservation encadrée |
 
 
 | Variable              | Opération         | Justification                                                |
@@ -147,8 +147,8 @@ Pour finaliser le jeu de données exploitable et éthique, on peut appliquer le 
 | email                 | ❌ supprimée      | RGPD                                                         |
 | telephone\_mobile     | ❌ supprimée      | RGPD                                                         |
 | adresse               | ❌ supprimée      | RGPD                                                         |
-| code\_postal          | ⚠️ supprimée      | potentiel Biais - possibilité de généraliser                 |
-| ville                 | ⚠️ supprimée      | potentiel Biais - possibilité de généraliser                 |
+| code\_postal          | ⚠️ transformée    | potentiel Biais - possibilité de généraliser                 |
+| ville                 | ⚠️ transformée    | potentiel Biais - possibilité de généraliser                 |
 | IBAN                  | ❌ supprimée      | RGPD                                                         |
 | num\_secu             | ❌ supprimée      | RGPD                                                         |
 | statut_compte_courant | ✅ conservée      | Variable métier - faible risque de biais                     |
@@ -174,7 +174,8 @@ Pour finaliser le jeu de données exploitable et éthique, on peut appliquer le 
 | defaut                | ✅ entraînement   | cible                                                        |
 
 
-Risque résiduel :
+**Risque résiduel :**
+
 Malgré la suppression des identifiants directs et des variables explicitement sensibles, un risque résiduel de discrimination indirecte subsiste. En effet, certaines variables conservées, bien que nécessaires à la finalité de scoring crédit, sont susceptibles d’agir comme variables proxy de caractéristiques protégées.
 - Les variables code_postal (généralisé en région) et ville peuvent ainsi refléter des disparités territoriales corrélées à l’origine ou au niveau socio-économique.
 - Les variables emploi, logement, epargne et biens constituent des indicateurs pertinents de solvabilité, mais restent fortement corrélés à la situation socio-économique, pouvant ainsi introduire des biais indirects. Ces variables sont conservées car elles sont nécesaires à la finalité du modèle et impossible à remplacer.
