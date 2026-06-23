@@ -185,7 +185,7 @@ Par ailleurs, le risque peut être amplifié par la combinaison de plusieurs var
 
 
 
-## Étape 5 : Étape 6 (Optionnelle) : Quantifier plutôt qu'affirmer
+## Étape 6 (Optionnelle) : Quantifier plutôt qu'affirmer
 
 Les risques résiduels sont liés aux variables contribuant directement à l’évaluation du risque de crédit. Ils doivent toutefois faire l’objet de mesures de limitation et doivent être explicitement documentés et surveillés dans le temps, notamment via des audits réguliers d’équité et de performance du modèle. Jusqu'à présent, les recommandations reponsent sur notre jugement, mais il existe des techniques pour étayer et quantifier certains biais et déséquilibres.
 
@@ -248,15 +248,3 @@ Résumé des actions
    - Documenter : datasheet.
 
 
----
-
-1. Équité : éviter les biais et garantir l’équité algorithmique
-    - Principe : 
-        *  Identifier les variables sensibles (ex : genre, origine ethnique, âge) et évaluer leur impact sur les résultats.
-        * Vérifier la représentativité des données (diversité des échantillons).
-    - Détection des biais :
-        * Utilisation d'outils d’analyse de biais (ex : IBM AI Fairness 360, Google What-If Tool).
-        * Métriques d’équité :
-            + Équité démographique : Parité de traitement entre groupes.
-            + Équité individuelle : Cohérence des décisions pour des individus similaires.
-            + Équité procédurale : Transparence des critères de décision.
