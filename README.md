@@ -9,6 +9,7 @@ Il couvre :
     ├── finova_credits.db          # Base SQLite des données préparées
 
    - le brief M2B2 - Analyse éthique et conformité du jeu de données
+
     ├── M2B2_Analyse_ethique.md    # Analyse RGPD et biais
     ├── M2B2_Datasheet.md          # Documentation des données (datasheet)
 
